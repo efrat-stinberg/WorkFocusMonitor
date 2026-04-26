@@ -1,0 +1,19 @@
+# Privacy Monitor Server Dependencies
+
+# Web framework
+fastapi==0.115.6
+
+# ASGI server
+uvicorn==0.34.0
+
+# Multipart form parsing (required by FastAPI for file uploads)
+python-multipart==0.0.18
+
+# Environment variable management
+python-dotenv==1.0.0
+
+# OpenAI API client (for image analysis)
+openai==1.57.4
+
+# SendGrid email API
+sendgrid==6.11.0

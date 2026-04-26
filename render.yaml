@@ -1,0 +1,29 @@
+# Render.com deployment blueprint
+# Docs: https://docs.render.com/blueprint-spec
+
+services:
+  - type: web
+    name: privacy-monitor-server
+    runtime: python
+    rootDir: server
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: API_KEY
+        sync: false          # set manually in Render dashboard
+      - key: ALLOWED_USER_IDS
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: SENDGRID_API_KEY
+        sync: false
+      - key: EMAIL_SENDER
+        sync: false
+      - key: EMAIL_RECIPIENT
+        sync: false
+      - key: UPLOAD_API_KEY
+        sync: false
+      - key: LOG_FILE
+        value: ""            # disable file logging on Render (use stdout)
+      - key: PYTHON_VERSION
+        value: "3.12.0"
