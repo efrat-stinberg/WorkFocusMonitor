@@ -31,7 +31,7 @@ Windows desktop agent that captures, filters, and uploads screenshots.
 | **Browser Detection** | Only captures when a supported browser is active and visible (not minimized) |
 | **Allowed Dev Sites** | Skips capture automatically when a known dev site is open (GitHub, Stack Overflow, docs, etc.) |
 | **Locked Screen Detection** | Avoids capture when the workstation is locked |
-| **Randomized Scheduling** | Capture intervals use a triangular distribution (configurable min/max/mode) with jitter |
+| **Randomized Scheduling** | Capture intervals use a fixed base (mode) with uniform jitter derived from min/max range |
 | **Retry + Circuit Breaker** | Exponential backoff on failures; stops hammering after repeated errors |
 | **Multi-Monitor Support** | Captures all connected physical monitors |
 | **Graceful Shutdown** | Handles Ctrl+C, SIGTERM, logoff, and system shutdown events |
@@ -49,7 +49,7 @@ GitHub, Stack Overflow, docs.python.org, MDN, LeetCode, ChatGPT, OpenAI, vscode.
 ```bash
 cd client
 pip install -r requirements.txt
-cp .env.example .env   # fill in API_BASE_URL, API_KEY, USER_ID
+# Create a .env file and fill in: API_BASE_URL, API_KEY, USER_ID
 python main.py
 ```
 
@@ -75,7 +75,7 @@ FastAPI backend that authenticates uploads, runs AI analysis, and sends email al
 ```bash
 cd server
 pip install -r requirements.txt
-cp .env.example .env   # set API_KEY, ALLOWED_USER_IDS, OPENAI_API_KEY, SENDGRID_API_KEY, EMAIL_RECIPIENT
+# Create a .env file and fill in: API_KEY, ALLOWED_USER_IDS, OPENAI_API_KEY, SENDGRID_API_KEY, EMAIL_RECIPIENT
 python main.py
 ```
 
